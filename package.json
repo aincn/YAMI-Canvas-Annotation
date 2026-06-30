@@ -1,0 +1,82 @@
+{
+  "name": "yami-canvas-annotation",
+  "version": "1.0.0",
+  "private": true,
+  "description": "YAMI canvas annotation desktop MVP",
+  "author": "北京市雅觅信息科技工作室",
+  "license": "MIT",
+  "main": "dist-electron/main.js",
+  "scripts": {
+    "dev": "npm run build:electron && concurrently -k \"vite --host 127.0.0.1\" \"wait-on http://127.0.0.1:5173 && electron .\"",
+    "build": "tsc && vite build && npm run build:electron",
+    "build:electron": "tsc -p electron/tsconfig.json",
+    "preview": "vite preview --host 127.0.0.1",
+    "electron": "electron .",
+    "dist": "npm run build && set CSC_IDENTITY_AUTO_DISCOVERY=false&& electron-builder --win",
+    "pack:win": "npm run build && set CSC_IDENTITY_AUTO_DISCOVERY=false&& electron-builder --win --dir"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.3.4",
+    "@types/ms": "^2.1.0",
+    "@types/node": "^22.10.2",
+    "@types/prop-types": "^15.7.14",
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "concurrently": "^9.1.0",
+    "electron": "^33.2.1",
+    "electron-builder": "^25.1.8",
+    "konva": "^9.3.18",
+    "lucide-react": "^0.468.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-konva": "^18.2.10",
+    "typescript": "^5.7.2",
+    "vite": "^6.0.3",
+    "wait-on": "^8.0.1"
+  },
+  "build": {
+    "appId": "com.yami.canvas-annotation",
+    "productName": "YAMI画布批注",
+    "asar": true,
+    "compression": "maximum",
+    "files": [
+      "dist/**/*",
+      "dist-electron/**/*",
+      "electron/assets/icon.ico",
+      "package.json"
+    ],
+    "directories": {
+      "output": "release"
+    },
+    "win": {
+      "icon": "electron/assets/icon.ico",
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        },
+        {
+          "target": "portable",
+          "arch": [
+            "x64"
+          ]
+        }
+      ]
+    },
+    "nsis": {
+      "include": "electron/installer.nsh",
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "YAMI画布批注",
+      "artifactName": "YAMI画布批注-安装版-${version}.${ext}"
+    },
+    "portable": {
+      "artifactName": "YAMI画布批注-便携版-${version}.${ext}"
+    }
+  }
+}
