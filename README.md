@@ -5,6 +5,10 @@
 A Windows desktop tool for image annotation, visual feedback, and project file management.  
 一款用于图片批注、视觉反馈和工程文件管理的 Windows 桌面工具。
 
+YAMI Canvas Annotation turns image revision requests from vague text descriptions into clear visual annotations, making it easier to communicate with AI tools, designers, developers, and clients.  
+
+YAMI画布批注可以把模糊的图片修改文字描述，转化为清晰的可视化标注，更适合向 AI 工具、设计师、开发者或客户表达修改意见。
+
 </div>
 
 ---
